@@ -4,9 +4,17 @@ var select = require('soupselect').select;
 var fs = require('fs');
 
 // parameters to set
+
+// username of the user
 var user_name = "public";
+
+// total number of posts of that user
 var max_entry_count = 3;
+
+// number of batch to obtain. Set it to max_entry_count/10 + 1
 var max_page = 1;
+
+// number of milliseconds to wait before getting the next batch. Set it to a number larger or equal to 1000.
 var waitMSeconds = 1000;
 
 // variables for the application
@@ -37,17 +45,7 @@ var convertContentToBookmarks = function(content){
 			console.debug("Error: " + err);
 		} else {
 
-			// soupselect happening here...
 			var entries = select(dom, 'div.articleThumbBlockOuter');
-			
-			//<DT><A HREF="https://www.brueggerssurvey.com/?AspxAutoDetectCookieSupport=1" ADD_DATE="1415284479">Bruegger&#39;s Guest Satisfaction Survey - Welcome</A>
-			/*
-			var entry = entries[0];
-			var entry_title = JSON.stringify(select(entry, '.articleTitlePan h3 a.title')[0].attribs['title']);
-			
-			console.log(entry_title);
-			return;
-			*/
 			
 			entries.forEach(function(entry) {
 				//console.log(JSON.stringify(entry) );
@@ -101,7 +99,6 @@ function writeBookmarks(){
 	var bookmark;
 	
 	for( var i = 0; i < bookmark_list.length; i++){
-		// now, done
 		bookmark = bookmark_list[i];
 		var html_element = "<DT><A HREF=\"" + bookmark.link + "\" ADD_DATE=\"" + bookmark.date + "\" TAGS=\""+bookmark.tags+"\">" + bookmark.title + "</A>\n";
 		html_whole += html_element;
