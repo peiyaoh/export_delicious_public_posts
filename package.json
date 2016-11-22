@@ -1,0 +1,14 @@
+{
+  "name": "ExportDeliciousPublicPosts",
+  "private": true,
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "htmlparser": "^1.7.7",
+    "request": "^2.79.0",
+    "soupselect": "^0.2.0"
+  }
+}
