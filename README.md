@@ -16,9 +16,9 @@ Before running the script, you need to set the following parameters
 
 **max_entry_count**: the total number of posts for a given user. If the user has 135 posts, you shoudl set it to 135. The script won't stop untill it gets this number of posts.
 
-**max_page**: the maximum number of batch (each with 10). You should set it to max_entry_count/10 + 1. For instnace, if the user has 135 posts, you should set it 14 (10 + 1).
+**max_page**: the maximum number of batch (each with 10 posts). You should set it to max_entry_count/10 + 1. For instnace, if the user has 135 posts, you should set it 14 (13 + 1).
 
-**waitMSeconds**: number of milliseconds to wait before getting each batch of posts. The default value is 1000 (1 second).
+**waitMSeconds**: number of milliseconds to wait between the requests to get each batch of posts. The default value is 1000 (1 second).
 
 ## Running
 
