@@ -16,9 +16,7 @@ Before running the script, you need to set the following parameters
 
 **user_name**: the username of the user. For instance, if the URL for a given user is https://del.icio.us/public, then you should set it to 'public'.
 
-**max_entry_count**: the total number of posts for a given user. If the user has 135 posts, you should set it to 135. The script will not stop until it gets this number of posts.
-
-**max_page**: the maximum number of batches (each with ten posts). You should set it to max_entry_count/10 + 1. For instance, if the user has 135 posts, you should set it to 14 (13 + 1).
+**max_entry_count**: the maximum number of public posts to retrieve for a given user. Set it to the total number of public posts of that user to retrieve all the public posts.
 
 **waitMSeconds**: number of milliseconds to wait between the requests to get each batch of posts. The default value is 1000 (1 second). Please don't reduce the value to be less than 1000 so that the script will not create too much burden for the server at Delicious.
 

@@ -8,21 +8,18 @@ var fs = require('fs');
 // username of the user
 var user_name = "public";
 
-// total number of posts of that user
-var max_entry_count = 3;
-
-// number of batch to obtain. Set it to max_entry_count/10 + 1
-var max_page = 1;
+// maximum number of public posts to retrieve. Set it to the total number of public posts of that user to retrieve all the public posts.
+var max_entry_count = 921;
 
 // number of milliseconds to wait before getting the next batch. Set it to a number larger or equal to 1000.
 var waitMSeconds = 1000;
 
 // variables for the application
 var page_index = 1;
-var entry_count = 0;
 var myURL;
 var myInterval;
 var bookmark_list = [];
+var job_list = [];
 var hteml_whole = "";
 var html_header = "<!DOCTYPE NETSCAPE-Bookmark-file-1>\n<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=UTF-8\">\n<TITLE>Bookmarks</TITLE>\n<H1>Bookmarks</H1>\n<DL><p>\n";
 var html_footer = "</DL><p>";
@@ -47,8 +44,10 @@ var convertContentToBookmarks = function(content){
 
 			var entries = select(dom, 'div.articleThumbBlockOuter');
 			
+			console.log("Posts in this batch: " + entries.length);
+			
 			entries.forEach(function(entry) {
-				//console.log(JSON.stringify(entry) );
+				
 				var bookmark = {};
 				
 				var entry_date = entry.attribs['date'];
@@ -69,9 +68,19 @@ var convertContentToBookmarks = function(content){
 				
 				bookmark_list.push(bookmark);
 				
-				entry_count++;
-				console.log("Entry count: " + entry_count);
-			})
+				console.log("Bookmark index: " + bookmark_list.length);
+			});
+			
+			page_index++;
+			
+			if(entries.length > 0){
+				// add one more page
+				job_list.push("https://del.icio.us/" + user_name + "?&page=" + page_index);
+			}
+			else{
+				myStopFunction();
+			}
+			
 		}
 	});
 
@@ -91,7 +100,9 @@ function callback(error, response, body) {
 }
 
 var startExporting = function(){
-	myInterval = setInterval(function(){ myTimer() }, waitMSeconds);
+	myInterval = setInterval(function(){ getOnePage() }, waitMSeconds);
+	// add one more page
+	job_list.push("https://del.icio.us/" + user_name + "?&page=" + page_index);
 };
 
 function writeBookmarks(){
@@ -115,29 +126,29 @@ function writeBookmarks(){
 	console.log("The bookmarks file was saved!");
 };
 
-function myTimer() {
+function getOnePage() {
+	console.log("# bookmarks: " + bookmark_list.length);
 	
-	if( page_index <= max_page){
-		myURL = "https://del.icio.us/" + user_name + "?&page=" + page_index
-		
+	if(bookmark_list.length >= max_entry_count){
+		myStopFunction();
+		return;
+	}
+	
+	if( job_list.length > 0 ){
+		myURL = job_list.shift();
 		var options = {
 		  url: myURL,
 		  headers: myHeaders
 		};
-		
+		console.log("Request: " + myURL);
 		request(options, callback);
-		
-		page_index++;
 	}
-	else if(entry_count < max_entry_count){
-		// do nothing, waitng for more links to return
-	}
-	else{
-		myStopFunction();
-	};
+	
+	
 }
 
 function myStopFunction() {
+	console.log("Stop - # bookmarks: " + bookmark_list.length);
     clearInterval(myInterval);
 	writeBookmarks();
 }
