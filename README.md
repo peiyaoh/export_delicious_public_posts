@@ -1,6 +1,6 @@
 # Export Delicious Public Posts
 
-This node.js script is created to export public posts of a user on [Delicious](https://del.icio.us/) into a bookmarks.html file that could be imported to other browsers (e.g., Chrome and Firefox) or services.
+This node.js script is created to export public posts of a user on [Delicious](https://del.icio.us/) into a html file that could be imported to other browsers (e.g., Chrome and Firefox) or services.
 
 Note: This script is basically a crawler, and it does not interact with Delicious's API. I created it because Delicious disables the export feature due to server loading, see [export](https://del.icio.us/export).
 
@@ -28,4 +28,4 @@ Before running the script, you need to set the following parameters
 ```
 node export_delicious_public.js
 ```
-When the script finishes, all the public posts (bookmarks) of the specified user will be saved in a bookmarks.html file.
+When the script finishes, all the public posts (bookmarks) of the specified user will be saved in a file named "[user_name]_bookmarks.html".

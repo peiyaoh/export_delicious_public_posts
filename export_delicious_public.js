@@ -117,7 +117,7 @@ function writeBookmarks(){
 	
 	html_whole += html_footer;
 			
-	fs.writeFile("./bookmarks.html", html_whole, function(err) {
+	fs.writeFile("./"+ user_name +"_bookmarks.html", html_whole, function(err) {
 		if(err) {
 			return console.log(err);
 		}}
