@@ -6,10 +6,10 @@ var fs = require('fs');
 // parameters to set
 
 // username of the user
-var user_name = "bbdp";
+var user_name = "public";
 
 // maximum number of public posts to retrieve. Set it to the total number of public posts of that user to retrieve all the public posts.
-var max_entry_count =930;
+var max_entry_count =100;
 
 // number of milliseconds to wait before getting the next batch. Set it to a number larger or equal to 2000.
 var waitMSeconds = 2000;
