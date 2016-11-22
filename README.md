@@ -28,3 +28,4 @@ Before running the script, you need to set the following parameters
 ```
 node export_delicious_public.js
 ```
+When the script finishes, all the public posts (bookmarks) of the specified user will be saved in a bookmarks.html file.
