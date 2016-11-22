@@ -5,7 +5,7 @@ This node.js script is created to export public posts of a user on [Delicious](h
 version 0.0.1.
 
 ## Acquire Dependency
-
+    
 npm install
 
 ## Before Running
@@ -21,5 +21,5 @@ Before running the script, you need to set the following parameters
 **waitMSeconds**: number of milliseconds to wait between the requests to get each batch of posts. The default value is 1000 (1 second).
 
 ## Running
-
+    
 node export_delicious_public.js
