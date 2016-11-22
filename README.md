@@ -22,7 +22,7 @@ Before running the script, you need to set the following parameters
 
 **max_entry_count**: the maximum number of public posts to retrieve for a given user. Set it to the total number of public posts of that user to retrieve all the public posts.
 
-**waitMSeconds**: number of milliseconds to wait between the requests to get each batch of posts. The default value is 1000 (1 second). Please don't reduce the value to be less than 1000 so that the script will not create too much burden for the server at Delicious.
+**waitMSeconds**: number of milliseconds to wait between the requests to get each batch of posts. The default value is 2000 milliseconds (2 second). Please don't reduce the value to be less than 2000 so that the script will not create too much burden for the server at Delicious.
 
 ## Running
 ```

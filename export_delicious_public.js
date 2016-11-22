@@ -11,8 +11,8 @@ var user_name = "public";
 // maximum number of public posts to retrieve. Set it to the total number of public posts of that user to retrieve all the public posts.
 var max_entry_count = 100;
 
-// number of milliseconds to wait before getting the next batch. Set it to a number larger or equal to 1000.
-var waitMSeconds = 1000;
+// number of milliseconds to wait before getting the next batch. Set it to a number larger or equal to 2000.
+var waitMSeconds = 2000;
 
 // variables for the application
 var page_index = 1;
