@@ -7,9 +7,13 @@ Note: This script is basically a crawler, and it does not interact with Deliciou
 version 0.0.1.
 
 ## Acquire Dependency
+Note: The script will be executed on top of the [Node.js](https://nodejs.org/) environment. If you have not installed Node.js and npm, please install Node.js first. NPM is a package manager that comes with Node.js installation.
+
+After the installation, you can execute the following command in the project folder.
 ```
 npm install
 ```
+
 ## Before Running
 
 Before running the script, you need to set the following parameters
