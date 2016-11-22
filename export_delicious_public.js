@@ -6,10 +6,10 @@ var fs = require('fs');
 // parameters to set
 
 // username of the user
-var user_name = "public";
+var user_name = "bbdp";
 
 // maximum number of public posts to retrieve. Set it to the total number of public posts of that user to retrieve all the public posts.
-var max_entry_count = 100;
+var max_entry_count =930;
 
 // number of milliseconds to wait before getting the next batch. Set it to a number larger or equal to 2000.
 var waitMSeconds = 2000;
@@ -53,6 +53,13 @@ var convertContentToBookmarks = function(content){
 				var entry_date = entry.attribs['date'];
 				var entry_title = select(entry, '.articleTitlePan h3 a.title')[0].attribs['title'];
 				var entry_link = select(entry, '.articleInfoPan p a')[0].attribs['href'];
+				
+				var entry_text_entity_list = select(entry, '.thumbTBriefTxt p p');
+				var entry_description = "";
+				if( entry_text_entity_list.length > 0){
+					entry_description = entry_text_entity_list[0].children[0].data;
+				}
+				console.log(JSON.stringify(entry_description) );
 				var entry_tags_raw = select(entry, '.thumbTBriefTxt .tagName li a');
 				
 				var entry_tags = [];
@@ -63,6 +70,7 @@ var convertContentToBookmarks = function(content){
 				
 				bookmark.date = entry_date;
 				bookmark.title = entry_title;
+				bookmark.description = entry_description;
 				bookmark.link = entry_link;
 				bookmark.tags = entry_tags.join();
 				
@@ -111,7 +119,7 @@ function writeBookmarks(){
 	
 	for( var i = 0; i < bookmark_list.length; i++){
 		bookmark = bookmark_list[i];
-		var html_element = "<DT><A HREF=\"" + bookmark.link + "\" ADD_DATE=\"" + bookmark.date + "\" TAGS=\""+bookmark.tags+"\">" + bookmark.title + "</A>\n";
+		var html_element = "<DT><A HREF=\"" + bookmark.link + "\" ADD_DATE=\"" + bookmark.date + "\" TAGS=\""+bookmark.tags+"\">" + bookmark.title + "</A>\n<DD>" + bookmark.description + "\n";
 		html_whole += html_element;
 	}
 	
